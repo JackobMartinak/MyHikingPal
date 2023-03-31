@@ -123,7 +123,7 @@
          </font>
       </Text>
       <Text fill="WHITE" layoutX="670.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Unkown author" />
-      <ImageView fitHeight="37.0" fitWidth="40.0" layoutX="602.0" layoutY="367.0">
+      <ImageView fitHeight="37.0" fitWidth="40.0" layoutX="626.0" layoutY="365.0">
          <image>
             <Image url="@../view/imgs/temperature-celsius.png" />
          </image>
@@ -133,7 +133,7 @@
             <Image url="@../view/imgs/Sunny-partly%20Cloudy.png" />
          </image>
       </ImageView>
-      <Text fill="#ffbb1c" layoutX="584.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="21">
+      <Text fill="#ffbb1c" layoutX="608.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="21">
          <font>
             <Font name="Agency FB" size="30.0" />
          </font>
@@ -141,6 +141,12 @@
             <Glow level="0.4" />
          </effect>
       </Text>
-      <Text layoutX="702.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="timeText" fill="#ffbb1c" layoutX="690.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font name="Agency FB Bold" size="32.0" />
+         </font>
+         <effect>
+            <Glow level="0.4" />
+         </effect></Text>
    </children>
 </AnchorPane>

@@ -74,6 +74,7 @@ public class LoginSceneController {
                 
                 MainSceneController sceneToLogin = loader.getController();
                 sceneToLogin.displayName(username);
+                // sceneToLogin.displayTime();
     
                 scene = new Scene(root);
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();

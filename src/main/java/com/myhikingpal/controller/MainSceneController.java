@@ -3,13 +3,14 @@ package com.myhikingpal.controller;
 import javafx.event.ActionEvent;
 import javafx.scene.*;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.*;;
 
 public class MainSceneController {
     @FXML
-    Label welcomeLabel;
+    Text welcomeLabel;
     
     private Stage stage;
     private Scene scene;

@@ -44,19 +44,21 @@ public class SignUpSceneController {
 
 
         String sql = "SELECT * FROM users WHERE name = ?";
-        try (Connection conn = DbConnection.getInstance().getConnection();
-            PreparedStatement pstmt  = conn.prepareStatement(sql)) {
+        try 
+        {
+            Connection conn = DbConnection.getInstance().getConnection();
+            PreparedStatement pstmt  = conn.prepareStatement(sql);
 
             pstmt.setString(1, username);
             ResultSet rs  = pstmt.executeQuery();
             if(rs.getString("name") == null && password.equals(passwordConfirm) && password.length() >= 6 && password.length() <= 12){
                 registerToDB(username, password);
+                return true;
 
             } else {
                 signUpLabel.setText("Incorrect credetials => Password needs to be 6 - 12 characters long, and username needs to be unique");
                 signUpLabel.setLayoutX(100);
                 System.out.println("Username: " + username + "  Pass: " + password + "  PassConf: " + passwordConfirm);
-                
             }
             
 
@@ -96,10 +98,12 @@ public class SignUpSceneController {
         if(signupCheck()){
             try{
 
+                String username = signUpUsername.getText();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/MainScene.fxml"));
                 root = loader.load();
                 
-    
+                MainSceneController sceneToLogin = loader.getController();
+                sceneToLogin.displayName(username);
                 
                 scene = new Scene(root);
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -112,8 +116,6 @@ public class SignUpSceneController {
             } catch(Exception e) {
                 System.out.print(e);
             }
-        } else {
-
         }
 
 

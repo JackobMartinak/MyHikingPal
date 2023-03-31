@@ -20,15 +20,32 @@ import com.myhikingpal.model.DbConnection;
  */
 public class App extends Application {
 
-   
+    class WindowButtons extends HBox {
+
+        public WindowButtons() {
+            Button closeBtn = new Button("X");
+
+            closeBtn.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    Platform.exit();
+                }
+            });
+
+            this.getChildren().add(closeBtn);
+        }
+    }
+
     // private static Scene scene;
 
     @Override
     public void start(Stage mainWindow) throws IOException {
+            
             Parent root = FXMLLoader.load(getClass().getResource("./gui/LoginScene.fxml"));
-            // Parent root = FXMLLoader.load(getClass().getResource("/gui/LoginScene.fxml"));
-            // Scene scene = new Scene(loadFXML("../../../resources/com/myhikingpal/gui/LoginScene.fxml"));
+
             Scene scene = new Scene(root);
+
             mainWindow.setTitle("MyHikingPal");
 
             mainWindow.setResizable(false);

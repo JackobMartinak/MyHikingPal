@@ -4,6 +4,8 @@ import javafx.util.Duration;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.scene.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +37,8 @@ public class MainSceneController {
     Text cityLocation;
     @FXML
     Text tempNow;
+    @FXML
+    ImageView weatherIcon;
 
     private Stage stage;
     private Scene scene;
@@ -59,85 +63,233 @@ public class MainSceneController {
         }
     }
 
+    private void weatherShow(){
+        String replacment = "\\d*\\w-\\d*\\w-\\d*\\s";
+        LocalTime time = LocalTime.now();
+        int hourTime = time.getHour();
+
+        JsonObject weather = wApi.getJsonWeather("Bratislava");
+        JsonObject weatherLocation = (JsonObject) weather.get("location");
+        JsonObject weatherNow = (JsonObject) weather.get("current").getAsJsonObject();
+
+        JsonArray weatherForcast = (JsonArray) weather.getAsJsonObject("forecast").getAsJsonArray("forecastday").get(0).getAsJsonObject().getAsJsonArray("hour");
+        String[] regexRes =  (weatherNow.getAsJsonObject("condition").get("icon").getAsString()).split("/");
+
+        // for(int i = 0; i < regexRes.length; i++){
+            // System.out.println(String.format("%d - %s", i, regexRes[i]));    String.format("../view/icons/%s", regexRes[6])
+        // }
+       
+
+        cityLocation.setText(weatherLocation.get("name").getAsString());
+        tempNow.setText(weatherNow.get("temp_c").getAsString());
+
+        if(hourTime <= 20){
+            firstHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            )); 
+        
+        secondHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime+1)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime+1)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime+1)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));
+        
+        thirdHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime+2)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime+2)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime+2)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));  
+
+        fourthHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime+3)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime+3)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime+3)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));
+        } else if (hourTime == 21) {
+            firstHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            )); 
+        
+        secondHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime+1)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime+1)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime+1)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));
+        
+        thirdHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime+2)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime+2)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime+2)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));  
+
+        fourthHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime-21)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime-21)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime-21)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));
+        } else if (hourTime == 22) {
+            firstHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            )); 
+        
+        secondHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime+1)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime+1)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime+1)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));
+        
+        thirdHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime-22)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime-22)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime-22)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));  
+
+        fourthHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(Math.abs(hourTime-23))
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(Math.abs(hourTime-23))
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(Math.abs(hourTime-23))
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));
+        } else if (hourTime == 23) {
+            firstHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(hourTime)
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            )); 
+        
+        secondHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(Math.abs(hourTime-23))
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(Math.abs(hourTime-23))
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(Math.abs(hourTime-23))
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));
+        
+        thirdHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(Math.abs(hourTime-24))
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(Math.abs(hourTime-24))
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(Math.abs(hourTime-24))
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));  
+
+        fourthHour.setText(String.format("%s\t| %s °C\t|\t %s", 
+            weatherForcast.get(Math.abs(hourTime-25))
+            .getAsJsonObject()
+            .get("time").getAsString().replaceAll(replacment, ""),
+            weatherForcast.get(Math.abs(hourTime-25))
+            .getAsJsonObject()
+            .get("temp_c").getAsString(),
+            weatherForcast.get(Math.abs(hourTime-25))
+            .getAsJsonObject()
+            .getAsJsonObject("condition").get("text").getAsString()
+            ));
+        } 
+        
+
+        Image img = new Image(getClass().getResourceAsStream(String.format("../view/icons/%s", regexRes[6])));
+
+        weatherIcon.setImage(img);
+    }
 
     public void displayName(String username) {
         try {
-            String replacment = "\\d*\\w-\\d*\\w-\\d*\\s";
+            
             welcomeLabel.setText(username);
 
-            JsonObject weather = wApi.getJsonWeather("Bratislava");
-            JsonObject weatherLocation = (JsonObject) weather.get("location");
-            JsonObject weatherNow = (JsonObject) weather.get("current").getAsJsonObject();
+            weatherShow();
 
-            JsonArray weatherForcast = (JsonArray) weather.getAsJsonObject("forecast").getAsJsonArray("forecastday").get(0).getAsJsonObject().getAsJsonArray("hour");
-            
-            // String test = JsonPath.read(null, username, null)
-            
-            // System.out.println(test);
-
-            cityLocation.setText(weatherLocation.get("name").getAsString());
-            tempNow.setText(weatherNow.get("temp_c").getAsString());
-
-            firstHour.setText(String.format("%s\t| %s °C\t|\t %s", 
-                weatherForcast.get(0)
-                .getAsJsonObject()
-                .get("time").getAsString().replaceAll(replacment, ""),
-                weatherForcast.get(0)
-                .getAsJsonObject()
-                .get("temp_c").getAsString(),
-                weatherForcast.get(0)
-                .getAsJsonObject()
-                .getAsJsonObject("condition").get("text").getAsString()
-                )); 
-            
-            secondHour.setText(String.format("%s\t| %s °C\t|\t %s", 
-                weatherForcast.get(1)
-                .getAsJsonObject()
-                .get("time").getAsString().replaceAll(replacment, ""),
-                weatherForcast.get(1)
-                .getAsJsonObject()
-                .get("temp_c").getAsString(),
-                weatherForcast.get(1)
-                .getAsJsonObject()
-                .getAsJsonObject("condition").get("text").getAsString()
-                ));
-            
-            thirdHour.setText(String.format("%s\t| %s °C\t|\t %s", 
-                weatherForcast.get(2)
-                .getAsJsonObject()
-                .get("time").getAsString().replaceAll(replacment, ""),
-                weatherForcast.get(2)
-                .getAsJsonObject()
-                .get("temp_c").getAsString(),
-                weatherForcast.get(2)
-                .getAsJsonObject()
-                .getAsJsonObject("condition").get("text").getAsString()
-                ));  
-
-            fourthHour.setText(String.format("%s\t| %s °C\t|\t %s", 
-                weatherForcast.get(3)
-                .getAsJsonObject()
-                .get("time").getAsString().replaceAll(replacment, ""),
-                weatherForcast.get(3)
-                .getAsJsonObject()
-                .get("temp_c").getAsString(),
-                weatherForcast.get(3)
-                .getAsJsonObject()
-                .getAsJsonObject("condition").get("text").getAsString()
-                ));
-            // secondHour.setText(String.format("%s | %s °C| %s |", 
-            //     weatherForcast.get(0).getAsString(), 
-            //     weatherForcast.get(0).getAsString()));
-            // thirdHour.setText(String.format("%s | %s °C| %s |", 
-            //     weatherNow.get("temp_c").getAsString(), 
-            //     weatherNow.getAsJsonObject("condition").get("text").getAsString()));   
-            // fourthHour.setText(String.format("%s | %s °C| %s |", 
-            //     weatherNow.get("temp_c").getAsString(), 
-            //     weatherNow.getAsJsonObject("condition").get("text").getAsString()));   
-            
-            // System.out.println(items.get(0));
-
-            // items.add(weather.get("country").getAsString());
             
         } catch (Exception e) {
             System.out.println(e);

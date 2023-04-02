@@ -127,12 +127,7 @@
             <Image url="@../view/imgs/temperature-celsius.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="46.0" fitWidth="52.0" layoutX="513.0" layoutY="361.0">
-         <image>
-            <Image url="@../view/imgs/Sunny-partly%20Cloudy.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="tempNow" fill="#ffbb1c" layoutX="596.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="21">
+      <Text fx:id="tempNow" fill="#ffbb1c" layoutX="592.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="21.0">
          <font>
             <Font name="Agency FB" size="30.0" />
          </font>
@@ -180,5 +175,6 @@
          </font>
       </Text>
       <ListView layoutX="104.0" layoutY="180.0" opacity="0.1" prefHeight="159.0" prefWidth="387.0" />
+      <ImageView fx:id="weatherIcon" fitHeight="38.0" fitWidth="52.0" layoutX="519.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

@@ -11,7 +11,8 @@ public class WeatherAPI {
     
     public JsonObject getJsonWeather(String city) {
         try {
-            URL url = new URL(String.format("http://api.weatherapi.com/v1/forecast.json?key=8409bf0c373c45b3b6b174106233103&q=bratislava&days=1&aqi=no&alerts=no", city)); // Replace with your API endpoint
+            
+            URL url = new URL(String.format("http://api.weatherapi.com/v1/forecast.json?key=8409bf0c373c45b3b6b174106233103&q=%s&days=1&aqi=no&alerts=no", city.toLowerCase())); // Replace with your API endpoint
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET"); // Replace with the appropriate HTTP method
             con.connect();
@@ -25,7 +26,7 @@ public class WeatherAPI {
 
                 while (scanner.hasNext()){
                     inline += scanner.nextLine();
-                    System.out.println(inline);
+                    // System.out.println(inline);
                 }
 
                 scanner.close();

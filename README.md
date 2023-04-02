@@ -3,3 +3,5 @@ V tejto aplikácií sa chcem zamerať na vytvorenie prostredia, kde užívateľ 
 
 V aplikácií bude mať možnosť počas turistiky zmeniť trasu na rázcestí a s tým sa mu aktualizujú ostatné informácie dostupné ohľadom cieľu a dopravy z danej lokácie. Ďalej užívateľ bude mať možnosť ohodnotiť trasu pre ostatných užívateľov, a jeho informácie o stave trasy aj s časom koľko mu daná trasa
 zabrala
+
+### Working Prototype till 11.4

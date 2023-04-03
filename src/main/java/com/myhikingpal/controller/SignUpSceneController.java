@@ -35,7 +35,7 @@ public class SignUpSceneController {
     @FXML
     private boolean signupCheck(){
         
-        String messLabel = signUpLabel.getText();
+        // String messLabel = signUpLabel.getText();
 
 
         String username = signUpUsername.getText();
@@ -99,7 +99,7 @@ public class SignUpSceneController {
             try{
 
                 String username = signUpUsername.getText();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/MainScene.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/gui/MainScene.fxml"));
                 root = loader.load();
                 
                 MainSceneController sceneToLogin = loader.getController();
@@ -108,7 +108,7 @@ public class SignUpSceneController {
                 
                 scene = new Scene(root);
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                String css = this.getClass().getResource("../gui/Gui_Interface.css").toExternalForm();
+                String css = this.getClass().getResource("../view/gui/Gui_Interface.css").toExternalForm();
                 
                 scene.getStylesheets().add(css);
                 stage.setScene(scene);
@@ -129,14 +129,14 @@ public class SignUpSceneController {
 
         try{
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/LoginScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/gui/LoginScene.fxml"));
             root = loader.load();
             
 
             
             scene = new Scene(root);
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            String css = this.getClass().getResource("../gui/Gui_Interface.css").toExternalForm();
+            String css = this.getClass().getResource("../view/gui/Gui_Interface.css").toExternalForm();
             
             scene.getStylesheets().add(css);
             stage.setScene(scene);

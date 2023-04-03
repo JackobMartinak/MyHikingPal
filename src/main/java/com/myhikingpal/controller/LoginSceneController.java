@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.myhikingpal.model.DbConnection;
-import com.myhikingpal.model.User;
+// import com.myhikingpal.model.User;
 
 public class LoginSceneController {
 
@@ -69,7 +69,7 @@ public class LoginSceneController {
             try{
                 String username = nameFieldLogin.getText();
                
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/MainScene.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/gui/MainScene.fxml"));
                 root = loader.load();
                 
                 MainSceneController sceneToLogin = loader.getController();
@@ -78,7 +78,7 @@ public class LoginSceneController {
     
                 scene = new Scene(root);
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                String css = this.getClass().getResource("../gui/Gui_Interface.css").toExternalForm();
+                String css = this.getClass().getResource("../view/gui/LoginScene.css").toExternalForm();
                 
                 scene.getStylesheets().add(css);
                 stage.setScene(scene);
@@ -96,12 +96,12 @@ public class LoginSceneController {
     public void signup (ActionEvent event){
         try{
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/SignupScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/gui/SignupScene.fxml"));
             root = loader.load();
         
             scene = new Scene(root);
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            String css = this.getClass().getResource("../gui/Gui_Interface.css").toExternalForm();
+            String css = this.getClass().getResource("../view/gui/Gui_Interface.css").toExternalForm();
             
             scene.getStylesheets().add(css);
             stage.setScene(scene);

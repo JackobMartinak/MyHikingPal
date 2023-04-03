@@ -57,9 +57,50 @@ public class MainSceneController {
 
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
+                weatherShow();
 
         } catch (Exception e){
 
+        }
+    }
+
+    
+
+    public void displayName(String username) {
+        try {
+            
+            welcomeLabel.setText(username);
+
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void switchToLoginScene(ActionEvent event){
+        try{
+            root = FXMLLoader.load(getClass().getResource("../view/gui/LoginScene.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            
+
+        } catch(Exception e) {
+
+        }
+    }
+
+    public void switchToMapScene(ActionEvent event){
+        try{
+            root = FXMLLoader.load(getClass().getResource("../view/gui/MapScene.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch(Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -74,11 +115,6 @@ public class MainSceneController {
 
         JsonArray weatherForcast = (JsonArray) weather.getAsJsonObject("forecast").getAsJsonArray("forecastday").get(0).getAsJsonObject().getAsJsonArray("hour");
         String[] regexRes =  (weatherNow.getAsJsonObject("condition").get("icon").getAsString()).split("/");
-
-        // for(int i = 0; i < regexRes.length; i++){
-            // System.out.println(String.format("%d - %s", i, regexRes[i]));    String.format("../view/icons/%s", regexRes[6])
-        // }
-       
 
         cityLocation.setText(weatherLocation.get("name").getAsString());
         tempNow.setText(weatherNow.get("temp_c").getAsString());
@@ -281,32 +317,5 @@ public class MainSceneController {
         Image img = new Image(getClass().getResourceAsStream(String.format("../view/icons/%s", regexRes[6])));
 
         weatherIcon.setImage(img);
-    }
-
-    public void displayName(String username) {
-        try {
-            
-            welcomeLabel.setText(username);
-
-            weatherShow();
-
-            
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    public void switchToLoginScene(ActionEvent event){
-        try{
-            root = FXMLLoader.load(getClass().getResource("../gui/LoginScene.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            
-
-        } catch(Exception e) {
-
-        }
     }
 }

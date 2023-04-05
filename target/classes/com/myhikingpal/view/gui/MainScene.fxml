@@ -53,7 +53,7 @@
             <Image url="@../imgs/miniLogov3.png" />
          </image>
       </ImageView>
-      <Button id="menuButton" layoutX="18.0" layoutY="254.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="45.0" style="-fx-background-color: #4ED1F0;" />
+      <Button id="menuButton" layoutX="18.0" layoutY="254.0" mnemonicParsing="false" onAction="#switchToReviewScene" prefHeight="35.0" prefWidth="45.0" style="-fx-background-color: #4ED1F0;" />
       <Button id="menuButton" layoutX="18.0" layoutY="327.0" mnemonicParsing="false" onAction="#switchToMapScene" prefHeight="35.0" prefWidth="45.0" style="-fx-background-color: #4ED1F0;" />
       <Button id="menuButton" layoutX="18.0" layoutY="397.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="45.0" style="-fx-background-color: #4ED1F0;" />
       <Button id="menuButton" layoutX="18.0" layoutY="542.0" mnemonicParsing="false" onAction="#switchToLoginScene" prefHeight="35.0" prefWidth="45.0" style="-fx-background-color: #9932EB;" />

@@ -29,7 +29,7 @@
             <Image url="@../imgs/LogoSECOND.png" />
          </image>
       </ImageView>
-      <Button id="menuButton" layoutX="18.0" layoutY="254.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="45.0" style="-fx-background-color: #4ED1F0;" />
+      <Button id="menuButton" layoutX="18.0" layoutY="254.0" mnemonicParsing="false" onAction="#switchToReviewScene" prefHeight="35.0" prefWidth="45.0" style="-fx-background-color: #4ED1F0;" />
       <Button id="menuButton" layoutX="18.0" layoutY="327.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="45.0" style="-fx-background-color: #FFBE1C;">
          <effect>
             <DropShadow height="40.0" radius="19.5" width="40.0">

@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.myhikingpal.model.DbConnection;
+import com.myhikingpal.model.User;
 
 
 public class SignUpSceneController {
@@ -75,21 +76,10 @@ public class SignUpSceneController {
 
     private void registerToDB(String username, String pass){
 
-        String sql = "INSERT INTO users (name, password, reviews, review_content) VALUES (?, ?, ?, ?)"; 
-        try (Connection conn = DbConnection.getInstance().getConnection();
-            PreparedStatement pstmt  = conn.prepareStatement(sql)) {
-            
-            pstmt.setString(1, username);
-            pstmt.setString(2, pass);
-            pstmt.setInt(3, 0);
-            pstmt.setString(4, "");
+        final User customer = new User(username, pass);
+        customer.CreateUser();
 
-            int insertRows  = pstmt.executeUpdate();
-
-            System.out.println(insertRows + " inserted rows");
-        } catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
+        
     }
 
     @FXML

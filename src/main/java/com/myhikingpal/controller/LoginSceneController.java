@@ -9,13 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.*;
 
-import java.sql.PreparedStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import com.myhikingpal.model.DbConnection;
 // import com.myhikingpal.model.User;
+import com.myhikingpal.model.User;
 
 public class LoginSceneController {
 
@@ -36,29 +32,14 @@ public class LoginSceneController {
 
         String username = nameFieldLogin.getText();
         String password = passFieldLogin.getText();
-
-        String sql = "SELECT * FROM users WHERE name = ?";
-        try  
-        {
-            Connection conn = DbConnection.getInstance().getConnection();
-            PreparedStatement pstmt  = conn.prepareStatement(sql);
-            pstmt.setString(1, username);
-            ResultSet rs  = pstmt.executeQuery();
-            if(rs.getString("name") != null && password.equals(rs.getString("password"))){
-                
-                return true;
-
-            } else {
-                System.out.println("Username: " + username + "  Pass: " + password);
-                return false;
-            }
-            
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        final User customer = new User(username, password);
+        if(customer.getUser(username)){
+            return true;
+        } else {
+            return false;
         }
 
-        return false;
+        
     }
 
     @FXML

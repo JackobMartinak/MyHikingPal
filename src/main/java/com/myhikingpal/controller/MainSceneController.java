@@ -77,6 +77,20 @@ public class MainSceneController {
         }
     }
 
+    public void switchToReviewScene(ActionEvent event){
+        try{
+            root = FXMLLoader.load(getClass().getResource("../view/gui/ReviewScene.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            
+
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public void switchToLoginScene(ActionEvent event){
         try{
             root = FXMLLoader.load(getClass().getResource("../view/gui/LoginScene.fxml"));
